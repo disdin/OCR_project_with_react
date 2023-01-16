@@ -17,7 +17,7 @@ def histogram_show(img):
   plt.show()  
 
 
-filename = 'pic.jpg'
+filename = 'C:\\Users\\priya\\Downloads\\ocr_test\\ocr_test\\1.jpg'
 img1 = cv2.imread(filename)
 
 if filename.endswith('.png') or filename.endswith('.jpg'):    
@@ -26,9 +26,9 @@ if filename.endswith('.png') or filename.endswith('.jpg'):
   img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
   histogram_show(img1)
   equ = cv2.equalizeHist(img1)
-  plt.imshow(equ)
-  plt.figure()
-  histogram_show(equ)
+  # plt.imshow(equ)
+  # plt.figure()
+  # histogram_show(equ)
   reader = easyocr.Reader(['en'], gpu=False)
   result = reader.readtext(equ)
 
@@ -46,7 +46,15 @@ img = cv2.rectangle(img,top_left,bottom_right,(0,255,0),3)
 img = cv2.putText(img,text,(20,spacer), font, 0.5,(0,255,0),2,cv2.LINE_AA)
 spacer+=15   
   
-print(output)
+# print(output)
+def transformStr(str):
+    str = ''.join(e for e in str if e.isalnum())
+    str = str.upper()
+    return str
+
+b = transformStr(output)
+print(b)
+
 # make this final output
 plt.figure(figsize=(3, 5))
 plt.imshow(img)
