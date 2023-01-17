@@ -1,7 +1,7 @@
 import { spawn } from 'child_process'
 
 function runScript() {
-    const child = spawn('python', ['Script.py'], { shell: true });
+    const child = spawn('python', ['Scrypt.py'], { shell: true });
     var resData = ""
     child.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
