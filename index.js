@@ -8,13 +8,14 @@ import { router } from "./router.js";
 import helmet from "helmet";
 import cluster from "cluster";
 import os from "os";
+import cors from 'cors'
 
 dotenv.config();
 
 const numCpu = os.cpus().length;
 
 const app = express();
-
+app.use(cors());
 // limiting concurrent requests
 const limiter = rateLimit({
   windowMs: 5 * 1000, 

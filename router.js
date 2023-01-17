@@ -13,7 +13,7 @@ router.get("/",(req,res)=>{
 
 // declaring routes
 router.post("/upload", upload.single('image_name'), (req, res) => {
-    runScript();
+    // runScript();
     res.sendStatus(200)
 })
 export {router};
