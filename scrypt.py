@@ -3,7 +3,7 @@ import easyocr
 import cv2
 from matplotlib import pyplot as plt
 
-filename = 'OCR_project_with_react\\upload\\image.jpg'
+filename = 'upload\\image.jpg'
 img1 = cv2.imread(filename)
 
 if filename.endswith('.png') or filename.endswith('.jpg'): 
@@ -40,3 +40,5 @@ print(b)
 # plt.figure(figsize=(3, 5))
 # plt.imshow(img)
 # plt.show()
+path = 'run/image.jpg'
+cv2.imwrite(path, img)

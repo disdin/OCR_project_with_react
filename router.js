@@ -13,7 +13,12 @@ router.get("/",(req,res)=>{
 
 // declaring routes
 router.post("/upload", upload.single('image_name'), (req, res) => {
-    // runScript();
-    res.sendStatus(200)
+    runScript(req,res);
+    // res.send("xsvb")
 })
+
+// router.get("/run", async (req,res)=>{
+//     const allData = await imagemodel.find()
+//     res.json(allData)
+// })
 export {router};

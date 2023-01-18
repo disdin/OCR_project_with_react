@@ -9,6 +9,7 @@ import helmet from "helmet";
 import cluster from "cluster";
 import os from "os";
 import cors from 'cors'
+import multer from "multer";
 
 dotenv.config();
 
