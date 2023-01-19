@@ -4,7 +4,7 @@ import path from 'path'
 const storage = multer.diskStorage({
     destination: './upload',
     filename: (req, file, cb) => {
-        console.log(file);
+        // console.log(file);
         return cb(null, `image${path.extname(file.originalname)}`)
     }
 })
@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage:storage,
     limits: {
-        fileSize: 1000000000000000000
+        fileSize: 1000000000000000
     }
 })
 export default upload;

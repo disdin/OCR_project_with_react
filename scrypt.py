@@ -23,13 +23,13 @@ for detection in result:
   bottom_right = tuple(detection[0][2])
   text = detection[1]
   output = output + text + " "
-  img = cv2.rectangle(img,top_left,bottom_right,(0,255,0),3)
-  img = cv2.putText(img,text,(20,spacer), font, 0.5,(0,255,0),2,cv2.LINE_AA)
+  img = cv2.rectangle(img,top_left,bottom_right,(0,255,0),9)
+  # img = cv2.putText(img,text,(20,spacer), font, 0.5,(0,255,0),2,cv2.LINE_AA)
   spacer+=15   
   
 # print(output)
 def transformStr(str):
-    str = ''.join(e for e in str if e.isalnum())
+    str = ''.join(e for e in str if e.isalnum() or e==" ")
     str = str.upper()
     return str
 

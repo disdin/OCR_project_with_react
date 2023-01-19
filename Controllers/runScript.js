@@ -1,5 +1,4 @@
 import { spawn } from 'child_process'
-import { json } from 'express';
 import fs from 'fs'
 
 function runScript(req, res) {
@@ -16,11 +15,12 @@ function runScript(req, res) {
 
     child.on('close', (code) => {
         const img = {
-            data: fs.readFileSync("run/image.jpg"),
+            data: fs.readFileSync("run/image.jpg","base64"),
             contentType: 'image/jpg',
             output: resData,
             err: " "
-        }                
+        }       
+        // console.log(img.data);         
         console.log(`child process exited with code ${code}`);
         res.send(JSON.stringify(img))
     });
