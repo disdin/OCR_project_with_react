@@ -54,13 +54,13 @@ const checkHandler=()=>{
       {
         imgInput ?
           <div className='lower_div'>
-            <div style={{ width: "20%" }}>
-              <img style={{ width: "12rem" }} src={imgInput.image} className="image-display" />
+            <div className='image_div'>
+              <img src={imgInput.image} className="image_check" />
             </div>
             <button className='run_btn' onClick={checkHandler} >Check</button>
-            <div style={{ width: "20%" }}>
-              {showImg ? <img style={{ width: "12rem" }} src={imgInput.out} className="image-display" /> 
-              : loading ? <img style={{ marginTop: "0rem" }} src='loading_gif.gif'></img> : <></>}
+            <div className='image_div'>
+              {showImg ? <img className="image_check"  src={imgInput.out}  /> 
+              : loading ? <img className='loading_gif' src='loading_gif.gif'></img> : <></>}
 
             </div>
           </div> : <></>
