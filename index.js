@@ -2,6 +2,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import Connection from "./model/db.js";
 import rateLimit from "express-rate-limit";
 import hsts from "hsts";
 import { router } from "./router.js";
@@ -31,10 +32,10 @@ const limiter = rateLimit({
 
 //declaring port and database url
 const port = process.env.PORT || 5000;
-// const username = process.env.DB_USERNAME;
-// const password = process.env.DB_PASSWORD;
-// const url = `mongodb+srv://${username}:${password}@smartforestappcluster.hx2d5.mongodb.net/MLproject`;
-// Connection(process.env.MONGODB_URI || url);
+const username = process.env.DB_USERNAME;
+const password = process.env.DB_PASSWORD;
+const url = `mongodb+srv://${username}:${password}@cluster0.y5m15ks.mongodb.net/?retryWrites=true&w=majority`;
+Connection(process.env.MONGODB_URI || url);
 
 // declaring middleware functions
 app.use(bodyParser.json({ limit: '1mb' }));

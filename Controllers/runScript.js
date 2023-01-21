@@ -1,5 +1,6 @@
 import { spawn } from 'child_process'
 import fs from 'fs'
+import uploadInDB from './uploadInDB.js';
 
 function runScript(req, res) {
     const child = spawn('python', ['scrypt.py'], { shell: true });
@@ -19,7 +20,8 @@ function runScript(req, res) {
             contentType: 'image/jpg',
             output: resData,
             err: " "
-        }       
+        } 
+        uploadInDB(img);
         // console.log(img.data);         
         console.log(`child process exited with code ${code}`);
         res.send(JSON.stringify(img))
