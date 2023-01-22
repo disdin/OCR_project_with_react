@@ -12,6 +12,7 @@ import os from "os";
 import cors from 'cors'
 import multer from "multer";
 
+
 dotenv.config();
 
 const numCpu = os.cpus().length;
@@ -34,7 +35,7 @@ const limiter = rateLimit({
 const port = process.env.PORT || 5000;
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
-const url = `mongodb+srv://${username}:${password}@cluster0.y5m15ks.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${username}:${password}@cluster0.khyvpbl.mongodb.net/?retryWrites=true&w=majority`;
 Connection(process.env.MONGODB_URI || url);
 
 // declaring middleware functions

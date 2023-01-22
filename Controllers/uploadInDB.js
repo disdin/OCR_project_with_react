@@ -3,22 +3,43 @@ import schema from '../model/schema.js';
 
 const Image = mongoose.model("imageInfo", schema.imageSchema);
 
-function uploadInDB(req, res){
-    // console.log(req.output);
+function uploadInDB(img){
+    // console.log(img.output);
 
-    Image.findOne({ output: req.output }, function (err, foundOutput) {
-        if (err) console.log("Error (signup): ", err);
-
+    Image.findOne({ Output: img.output.toString() }, function (err, foundOutput) {
+        if (err) console.log("Error (signup): ", err);        
         if (!foundOutput) {
-            //ensuring no duplicate entry or signup
-            var image = req.data;
-            var output = req.output;
+            //ensuring no duplicate entry
+            var image = img.data;
+            var output = img.output;
 
             const newImage = new Image({
-                ImgNum : output,
-                Image : image
+                Output : output,
+                Image : image,
+                Count : 1
             });
-            newImage.save();
+            
+            newImage.save(function (errors) {
+                if (errors) {
+                        res.status(401).send("<h2> error in saving image in uploadDB </h2>");
+                    }
+                });
+        }        
+        if(foundOutput){
+            Image.updateOne({ Output: foundOutput.Output }, {
+                $set: {
+                    Count: foundOutput.Count+1
+                }
+            },
+        function (err, result) {
+            if (err) {
+                console.log("Error (uploadDB): ", err);
+            }
+            else {
+                console.log("Successfully count Updated");
+            }
+            
+        });         
         }
     });
 }

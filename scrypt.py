@@ -2,9 +2,16 @@
 import easyocr
 import cv2
 from matplotlib import pyplot as plt
+import os
+from os import path
 
-filename = 'upload\\image.jpg'
-img1 = cv2.imread(filename)
+
+folder = 'upload\\'
+# img1 = cv2.imread(filename)
+for filename in os.listdir(folder):
+    img1 = cv2.imread(os.path.join(folder,filename))
+    extension = (os.path.splitext(os.path.join(folder,filename)))[1]
+# print(extension)
 
 if filename.endswith('.png') or filename.endswith('.jpg'): 
   img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -34,11 +41,12 @@ def transformStr(str):
     return str
 
 b = transformStr(output)
-print(b)
+print(b,end='')
 
 # make this final output
 # plt.figure(figsize=(3, 5))
 # plt.imshow(img)
 # plt.show()
-path = 'run/image.jpg'
+path = path.join('run', 'image' + extension)
+# print(path)
 cv2.imwrite(path, img)

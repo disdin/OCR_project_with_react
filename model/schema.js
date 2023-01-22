@@ -3,8 +3,9 @@ import mongoose from "mongoose";
 var Schema = mongoose.Schema;
 
 var imageSchema = new Schema({
-  ImgNum: Number,
-  Image: String
+  Output: String,
+  Image: String,
+  Count: Number,
 });
 
 
