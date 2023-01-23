@@ -18,7 +18,10 @@ dotenv.config();
 const numCpu = os.cpus().length;
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin:["https://image-to-text-ps.onrender.com"]
+}));
+
 // limiting concurrent requests
 const limiter = rateLimit({
   windowMs: 5 * 1000, 
