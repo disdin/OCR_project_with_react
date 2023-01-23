@@ -2,15 +2,12 @@
 import express from "express";
 import runScript from "./Controllers/runScript.js";
 import upload from "./Controllers/upload.js";
-import path from "path"
+
 const router=express.Router();
 
 router.get("/",(req,res)=>{
     console.log(`ok... ${process.pid}`);
-    console.log(path)
-    // res.send(path);
-    res.sendFile(path.join(__dirname, "frontend/public", "index.html"));
-
+    res.send(`ok... ${process.pid}`);
     // cluster.worker.kill();
 })
 
