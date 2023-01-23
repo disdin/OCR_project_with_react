@@ -30,16 +30,24 @@ function runScript(req, res) {
         fs.readdirSync(testFolder).forEach(file => {
             fiiile = file
           });
+        //   console.log(fiiile)
           const path__ = path.join(testFolder, fiiile)
+          const ext = path.extname(fiiile);
+        //   console.log(ext);
            const img = {
             data: fs.readFileSync(path__,"base64"),
             output: resData,
-            err: " "
+            err: " ",
+            contentType : ext,
         } 
         uploadInDB(img);
         // console.log(img.data);         
         console.log(`child process exited with code ${code}`);
-        res.send(JSON.stringify(img))
+        res.send(JSON.stringify(img));
+
+        // fs.unlink(path.join(testFolder, fiiile), (err) => {
+        //     if (err) throw err;
+        // });
 
     });
 };

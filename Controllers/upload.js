@@ -1,10 +1,17 @@
 import multer from 'multer'
 import path from 'path'
+import fs from 'fs'
+
 
 const storage = multer.diskStorage({
     destination: './upload',
+
     filename: (req, file, cb) => {
-        // console.log(file);
+        fs.readdirSync('./upload').forEach(oldFile => {
+            fs.unlink(path.join('./upload', oldFile), (err) => {
+                    if (err) throw err;
+                });
+          });
         return cb(null, `image${path.extname(file.originalname)}`)
     }
 })

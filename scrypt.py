@@ -19,6 +19,7 @@ if filename.endswith('.png') or filename.endswith('.jpg'):
   reader = easyocr.Reader(['en'], gpu=False)
   result = reader.readtext(equ)
 
+# print(result)
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -26,11 +27,17 @@ img = img1
 spacer = 100
 output = ""
 for detection in result:
-  top_left = tuple(detection[0][0])
-  bottom_right = tuple(detection[0][2])
+  # print(detection)
+  tupple_top_left = tuple(int(item) for item in tuple(detection[0][0]))
+  tupple_bottom_right = tuple(int(item) for item in tuple(detection[0][2]))
+  # top_left = tuple(int(detection[0][0]))
+  # bottom_right = tuple(detection[0][2])
+  top_left = tupple_top_left
+  bottom_right = tupple_bottom_right
+  # print(top_left)
   text = detection[1]
   output = output + text + " "
-  img = cv2.rectangle(img,top_left,bottom_right,(0,255,0),9)
+  img = cv2.rectangle(img,top_left,bottom_right,(0,255,0),5)
   # img = cv2.putText(img,text,(20,spacer), font, 0.5,(0,255,0),2,cv2.LINE_AA)
   spacer+=15   
   
@@ -47,6 +54,6 @@ print(b,end='')
 # plt.figure(figsize=(3, 5))
 # plt.imshow(img)
 # plt.show()
-path = path.join('run', 'image' + extension)
+path_ = path.join('run', 'image' + extension)
 # print(path)
-cv2.imwrite(path, img)
+cv2.imwrite(path_, img)

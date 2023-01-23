@@ -9,6 +9,7 @@ function Upload() {
     const [base64out, setBase64out] = useState(null);
     const [output, setOutput] = useState(null);
     const [loading, setloading] = useState(false);
+    const [fileExtension, setFileExtension] = useState(null);
     function handleChange(e) {
         console.log(e.target.files);
         setSelectedFile(e.target.files[0])
@@ -33,10 +34,12 @@ function Upload() {
         setBase64out(null)
         setOutput(null)
         setloading(true)
+        setFileExtension(null);
         const res = await axios.post('http://localhost:5000/runScript')
         console.log(res)
         setOutput(res.data.output)
         setBase64out(res.data.data);
+        setFileExtension(res.data.ext);
         setloading(false)
     }
 
@@ -59,7 +62,7 @@ function Upload() {
                         >
                             Run</button>
                         {base64out ?
-                            <img src={`data:image/jpg;base64,${base64out}`} className='upload-image' />
+                            <img src={`data:image/${fileExtension};base64,${base64out}`} className='upload-image' />
                             :
                             loading ? <img style={{ marginTop: "-4rem" }} src='loading_gif.gif'></img> : <></>}
                     </div>
