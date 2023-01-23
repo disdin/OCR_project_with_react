@@ -7,6 +7,7 @@ const router=express.Router();
 
 router.get("/",(req,res)=>{
     console.log(`ok... ${process.pid}`);
+    res.header("Access-Control-Allow-Origin", "*");
     res.send(`ok... ${process.pid}`);
     // cluster.worker.kill();
 })
