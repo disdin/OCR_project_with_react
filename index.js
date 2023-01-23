@@ -21,7 +21,11 @@ const app = express();
 app.use(cors({
   origin:'https://image-to-text-ps.onrender.com',
 }));
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // limiting concurrent requests
 const limiter = rateLimit({
   windowMs: 5 * 1000, 
