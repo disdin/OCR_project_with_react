@@ -19,7 +19,7 @@ const numCpu = os.cpus().length;
 
 const app = express();
 app.use(cors({
-  origin:["https://image-to-text-ps.onrender.com"]
+  origin:'https://image-to-text-ps.onrender.com'
 }));
 
 // limiting concurrent requests
